@@ -1,0 +1,94 @@
+<!--
+ * @Date: 2022-01-25 10:54:33
+ * @LastEditTime: 2022-01-25 12:43:47
+ * @LastEditors: your name
+ * @Description:  
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Untitled Document</title>
+
+</head>
+
+<body>
+  <script type="text/javascript">
+    /*
+     * param1 Array 
+     * param2 Array
+     * return true or false
+     */
+    // let arr1 = []
+    // let arr2 = []
+    let arr1type = []
+    let arr2type = []
+    let isSimilar = true
+
+    function arraysSimilar(arr1, arr2) {
+
+        if(!(arr1 instanceof Array) || !(arr2 instanceof Array)){
+          return false
+        }
+        if (arr1.length != arr2.length) {
+          return false
+        } else {
+          arr1type = []
+          arr2type = []
+          for (let i = 0; i < arr1.length; i++) {
+            typeof arr1[i] == 'object'? arr1type.push(Object.prototype.toString.apply(arr1[i])): arr1type.push(typeof arr1[i])
+            typeof arr2[i] == 'object'? arr2type.push(Object.prototype.toString.apply(arr2[i])): arr2type.push(typeof arr2[i])
+          }
+          for(let j =0; j < arr1type.length ; j++){
+            if( arr1type.indexOf(arr2type[j]) === -1){
+              isSimilar = false
+            }
+
+          }
+          return isSimilar
+        }
+    }
+    // 为什么将参数直接传入是正确的，而传入对象中的属性就是又问题
+    // console.log(JSON.stringify([window,1,true,new Date(),"hahaha",(function(){}),undefined]))
+    // let aarr1 =[window,1,true,new Date(),"hahaha",(function(){}),undefined]
+    // let aarr2 =[undefined,(function(){}),"okokok",new Date(),false,2,window]
+    // console.log(arraysSimilar(aarr1,aarr2))
+  </script>
+   <script src="testData.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- let arr1 = []
+let arr2 = []
+let arr1type = []
+let arr2type = []
+let typeofAvilable = ['string','number','boolean','undefined','function']
+let type2 = ['array','null','object']
+// obj instanceof Object [基于原型链判断类型]。instanceof 右边必须为一个函数构造器
+[1,2] instanceof Array === true
+new Object() instanceof Array === false
+// 不同window或iframe间的对象类型检测不能使用instanceof
+Object.prototype.toString.apply([]) === "[object Array]"
+Object.prototype.toString.apply(function(){}) === "[object Function]"
+Object.prototype.toString.apply(null) === "[object Null]"
+Object.prototype.toString.apply(undefined) === "[object Undefined]"
+// IE6/7/8 Object.prototype.toString.apply(null) === "[object Object]"
+
+
+
+
+if(arr1.length!=arr2.length) {
+return false
+}else {
+for(let i = 0; i < arr1.length; i++){ //非基本类型 if(typeof arr1[i]=='object' ) {
+  arr1type.push(Object.prototype.toString.apply(arr1[i])) }else { arr1type.push(typeof arr1[i]) } if(typeof
+  arr2[i]=='object' ) { arr1type.push(Object.prototype.toString.apply(arr2[i])) }else { arr2type.push(typeof arr2[i]) }
+  // if(arr1[i] ) // arr1.push(typeof arr1[i]) // arr2.push(typeof arr2[i]) } } // typeof String Boolean Number
+  Undefined // null 函数 日期 window -->

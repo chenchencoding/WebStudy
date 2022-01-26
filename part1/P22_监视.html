@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    姓：<input type="text" v-model="firstName"/>
+    名：<input type="text" v-model="lastName"/>
+    姓名：<input type="text" v-model="fullName"/>
+  </div>
+  <script>
+    /* 
+     1. watch 可以对data， 以及computed属性进行监听；当监听的属性发生更改的时候，可以获取到newVal,oldVal
+     2. vue 可以监听到对象中内容的改变，但是watch 默认不能。 需要用deep进行监听才可以
+     3. watch 默认不开启deep:true 只为了效率考虑
+    */
+   var vmWatch = "frank"
+    const vm  = new Vue({
+      el:'#app',
+      data(){
+        return {
+          firstName: '张',
+          lastName:'三',
+          address:{
+            country:'China',
+            provice:'LiaoNing'
+          },
+          otherName:"Donlod"
+        }
+      },
+      computed: {
+        fullName(){
+          return this.firstName + '-' + this.lastName
+        }
+      },
+      watch: {
+        firstName:{
+          immediate:false,
+          handler(newVal,oldVal){
+            console.log("newVal" + newVal +";" + "oldVal"+oldVal)
+          }
+        },
+        fullName: {
+          immediate:true,
+          handler(newVal, oldVal){
+            console.log("newVal" + newVal +";" + "oldVal"+oldVal)
+          }
+        },
+        //简写
+        otherName(newVale,OldeVal){
+
+        },
+        address:{
+          deep:true,
+          handler(){
+            //对对象中的任意属性的变化进行监听
+          }
+        },
+        'address.country':{
+          handler(){
+            //对对象中的某一属性的变化进行监听
+          }
+        }
+      }
+    })
+    //（不理解这个的使用时机，要根据用户的操作来调用监听）
+    vm.$watch('lastName',{
+      immediate:true,
+      handler(newVal,oldVal){
+        console.log(newVal)
+      }
+    })
+    // 简写
+    vm.$watch('lastName',function(){
+
+    })
+  </script>
+</body>
+</html>

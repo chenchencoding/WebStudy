@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 通过set(向data中的对象内部添加一个响应式的数据 ，但是这里的target不能为data 本身
+  Vue.set(target, key, value) 
+  vm.$set(target, key, value)
+  Vue.set(address, 'towndown', 'Ganjingzi')
+  vm.$set(address, 'towndown', 'Ganjingzi')
+  -->
+  data(){
+    return {
+      name: 'Tom',
+      age:'male'
+      address:{
+        country:'China',
+        provice:"LiaoNing"
+      }
+    }
+  }
+</body>
+</html>

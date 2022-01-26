@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="../vue.js"></script> -->
+</head>
+
+<body>
+  <!-- 实现一个简易的对象数据监视 -->
+  <!-- vm 中的数据是经过数据代理得到的 -->
+  <script>
+    let data = {
+      name: 'Frank',
+      age: '18'
+    }
+    
+    const obs = new Observer(data)
+    let vm = {}
+    vm._data = data = obs
+    console.log(obs)
+    function Observer(obj){
+      const keys = Object.keys(obj)
+      console.log("typeof(keys)", typeof(keys))
+      keys.forEach((item)=>{
+        Object.defineProperty(this,item,{
+          get(){
+            return obj[item]
+          },
+          set(val){
+            obj[item] = val
+          }
+        })
+      })
+    }
+  </script>
+</body>
+
+</html>

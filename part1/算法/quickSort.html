@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="quickTest.js"></script>
+</head>
+
+<body>
+  <script>
+    // let arr = [0, 49 ,28,65,97,76,13,27,49]
+    // console.log('排序前',arr)
+    // Qsort(arr,1,arr.length-1)
+    // console.log('排序后', arr.splice(1))
+    // function Qsort(arr,low,high){
+    //    if(low < high){
+    //     let privotloc = partition(arr, low, high)
+    //     Qsort(arr,low,privotloc-1)
+    //     Qsort(arr,privotloc+1,high)
+    //    }
+    // }
+    // function partition(arr, low, high){
+    //   arr[0] = arr[low] 
+    //   let privotKey = arr[low]
+    //   while(low < high) {
+    //     while(low < high && arr[high] >= privotKey) {
+    //       high--;
+    //     }
+    //     arr[low] = arr[high];
+    //     while(low < high && arr[low] <= privotKey) {
+    //       low++;}
+    //     arr[high] = arr[low];
+    //   }
+    //   arr[low] = arr[0]
+    //   return low
+    // }
+
+    // 如何将修改后的数据给nums: 在函数内部修改外部传入的数组
+    let nums1 = [1, 2, 3, 0, 0, 0]
+    let nums2 = [2, 5, 6]
+    merge(nums1,3,nums2,3);
+    console.log(nums1)
+
+  </script>
+</body>
+
+</html>

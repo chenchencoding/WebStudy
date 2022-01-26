@@ -1,0 +1,45 @@
+<!--
+ * @Date: 2021-12-31 09:08:10
+ * @LastEditTime: 2022-01-06 09:25:00
+ * @LastEditors: your name
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src='func.js'></script>
+  <script src ='reducepolution.js'></script>
+</head>
+<body>
+  <div id="app">content</div>
+  <script>
+    
+    let getId1 = document.getElementById.call(document,'app')
+    let getId2 = document.getElementById('app')
+    console.log(typeof getId1 ,getId1) //  object content
+    console.log(typeof getId2 , getId2) // object content
+    console.log(typeof document.getElementById) // function
+
+
+    // JavaScript的类型错误：Illegal invocation 非法调用
+    // let errGetId = document.getElementById
+    // errGetId('app')
+
+
+    document.getElementById = (function (func) {
+      return function () {
+         return func.apply(document,arguments)
+      }
+    })(document.getElementById);
+
+    let getId = document.getElementById
+    let div = getId('app')
+    console.log(div) // object undefined
+  </script>
+</body>
+<script src='singleton.js'></script>
+</html>

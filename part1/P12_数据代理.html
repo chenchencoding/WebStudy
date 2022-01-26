@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='../vue.js'></script>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 数据代理，将一个对象的相关操作，代理到另一个对象上。
+    // 此处完成的是，将obj1 代理到obj2 之上
+    let obj1 = {x: 100}
+    let obj2 = {y: 200}
+    Object.defineProperty(obj2, 'x',{
+        get () {
+            return obj1;
+        },
+        set (value) {
+            obj1.x = value
+        }
+    })
+</script>

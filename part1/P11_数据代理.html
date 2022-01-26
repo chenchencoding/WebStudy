@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    /**
+     *  通过 Object.definePropert（A, attr, B)
+     *  可以在A对象内，定义attr属性，并且属性值通过B进行赋值 
+     *  B 中可以定义attr属性是否可以进行枚举，写操作，删除
+     *  可以通过get ,set 方法，对attr的值进行操作
+     *  
+     *  应用场景，有些属性需要到高级的性质，比如不可枚举，那么就需要这样使用
+     *  
+     */
+    let age_ = 18
+    let person = {
+        name: 'Frank',
+        gender: 'Man'
+    }
+    Object.defineProperty(person,'age',{
+        // value: 19,
+        // enumerable: true, //可枚举
+        // writable: false, //可写
+        // configurable: true //可删除 delete.person.age 
+
+        // 当用户读取age 的时候，执行get方法 返回 age = 25
+        get () {
+            console.log('读取age')
+            return age_
+            // 此时age 和 age_想关联（共用内存） 所以会一起被更改
+        },
+        set (value) {
+            console.log('将' + person.age + '修改为' + value)
+            age_ = value
+            
+        }   
+    })
+
+</script>

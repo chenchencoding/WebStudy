@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字特效</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <!-- 每一秒钟改变该字符 -->
+  <h1 id="app">{{dividion}}</h1>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data(){
+      return {
+        sentence: 'cactus',
+        
+      }
+    },
+    computed: {
+      dividion: function(){
+        for(let  i = 0 ; i < this.sentence.length; i++){
+          setTimeout(()=>{
+            console.log("sss")
+          }, 1000)
+          return this.sentence[i]
+          // console.log(this.sentence[i])
+        }
+        // let  i = 0
+        // setTimeout(()=>{
+        //    console.log(this.sentence[i])
+        // },1000)
+        // i++
+        // return this.sentence[i]
+      }
+    }
+  })
+</script>
+</html>

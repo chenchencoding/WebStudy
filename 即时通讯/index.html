@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+  </head>
+  <body>
+    <button id="upload">上传</button>
+    <script>
+      const socket = io("http://localhost:3000");
+      const uploadBtn = document.querySelector("#upload");
+      uploadBtn.addEventListener("click", () => {
+        fetch("http://localhost:3000/upload")
+          .then((res) => res.json())
+          .then((res) => console.log('上传简历成功,返回数据：', res));
+      });
+      socket.on("upload-resume", (res) => {
+        console.log('收到后端耗时处理的数据:', res)
+      });
+    </script>
+  </body>
+</html>

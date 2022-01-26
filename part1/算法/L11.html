@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     let arr = [2,3,4,5,18,17,6]
+    // let arr = [4,3,2,1,4]
+     var maxArea = function(height) {
+      let max = 0
+      for(let i = 0, j = height.length-1; i < j;){
+          let square = (j-i)*minValue(height[i],height[j]) // 计算面积
+          if(square > max){
+            max = square
+          }
+          if(height[i] < height[j]) ++i;
+          else --j
+      }
+      return max
+    };
+    var minValue = function(i,j){
+      return i <= j ? i : j;
+    }
+    console.log(maxArea(arr))
+  </script>
+ 
+</body>
+</html>

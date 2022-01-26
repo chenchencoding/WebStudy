@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+   let nums = [-1,0,1,2,-1,-4]
+    var threeSum = function (nums) {
+      let res = []
+      // 排序
+      nums.sort(function(a,b){
+        return a - b
+      })
+      for(let first = 0; first < nums.length ; first++){
+        if(first > 0 && nums[first] == nums[first - 1]){
+          continue
+        }
+        let third = nums.length - 1
+        let target = -nums[first]
+        for(let second = first + 1 ; second < nums.length ; second++ ){
+          
+           if(second > first + 1 && nums[second] == nums[second - 1]){
+              continue
+           }
+           while(second < third && nums[second] + nums[third] > target){
+             third --
+           }
+           if(second == third){
+              break
+           }
+           if(nums[second]+ nums[third] == target){
+            res.push([nums[first],nums[second],nums[third]])
+           }
+          
+        }
+      }
+      return res
+    };
+    console.log(threeSum(nums))
+    // let nums = [0,0,0]
+    // var threeSum = function (nums) {
+    //   for (let i = 0, j = nums.length - 1 ; i < j; ) {
+    //     let other = nums[i] + nums[j] 
+    //     //  怎样保证能够不重复查询当前的i, j 处的数据
+    //     let res = findNum(nums, (0-other))
+    //     if(res != -1){
+    //       // 如果进行数组去重
+    //       let temp = [nums[i],nums[j],nums[res]]
+    //       console.log(temp.sort(function(a,b){
+    //         return a - b
+    //       }))
+    //     }
+    //     if (other > 0) {
+    //       j-- 
+    //     } else {
+    //       i++ 
+    //     }
+    //   }
+    // } 
+    // //    找第三个数
+    // var findNum = function (arr, num) {
+    //   for (let i = 0 ; i < arr.length - 1 ; i++) {
+    //     if (arr[i] === num) {
+    //       return i 
+    //     }
+    //   }
+    //   return -1 
+    // }
+    // threeSum(nums.sort(function (a, b) {
+    //   return a - b;
+    // }))
+  </script>
+</body>
+
+</html>

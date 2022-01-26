@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="Zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <h1>{{name}}</h1>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    /**
+     *  el的两种方式
+     *  1. new Vue 的时候直接配置el
+     *  2. new Vue 后 通过$mount 配置el
+     *  data 的两种方式
+     *  1. 对象式
+     *  2. 函数式 （以及简明函数式）
+     *  注意，有Vue管理的函数，不可以用箭头函数，因为箭头函数this指向windows
+     */
+
+    
+    // new Vue ( {
+    //     el: '#app',
+    //     data:  {
+    //       name: 'Nihao'
+    //     }
+    // })
+    const vm = new Vue({
+        //对象式
+        // data: {
+        //     name: 'Bonjour'
+        // }
+        // 函数式
+        // data: function (){
+        //     return {
+        //         name: 'Hello'
+        //     }
+        // }
+        //简写函数式
+        data () {
+            return {
+                name: 'Hello'
+            }
+        }
+    })
+    // 1s 后将#app 挂载到Vue 
+    // el $mount 就是将#app组件挂载到Vue上
+    setTimeout( ()=>{
+        vm.$mount('#app')
+    },1000);
+    
+</script>

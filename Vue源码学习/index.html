@@ -1,0 +1,63 @@
+<!--
+ * @Date: 2022-01-13 14:10:22
+ * @LastEditTime: 2022-01-19 17:28:01
+ * @LastEditors: your name
+ * @Description: 
+ 1. 将一个数据变为响应式，知道什么时候被读取或者是复写
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="Observer.js"></script> -->
+</head>
+<body>
+    <script>
+      // let car = {}
+      // let val = 3000
+      // // console.log(Observer)
+      // let reactiveCar = new Observer({
+      //     'brand':'BMW',
+      //     'price':3000
+      // })
+      // console.log(reactiveCar)
+      
+      // ^非
+      // \w 匹配字母、数字、下划线
+      // $ 匹配字符结束位置
+      // . 匹配除换行符 \n 之外的任何单字符
+      // 那些 不是 字母，数字，下划线，单字符的，都不满足条件
+      const bailRE = /[^\w.$]/
+      function parsePath (path) {
+        if (bailRE.test(path)) {
+          return
+        }
+        const segments = path.split('.')
+        // console.log('segements',segments)
+        return function (obj) {
+          console.log('待处理的对象',obj)
+          for (let i = 0; i < segments.length; i++) {
+            if (!obj) return
+            obj = obj[segments[i]]
+          }
+          console.log('处理完后的值',obj)
+          return obj
+        }
+      } 
+      console.log(parsePath('a.b.c')({a:{b:{c:2}}}))
+      // console.log(parsePath({a:{b:{c:2}}}))
+      console.log('<-************************************->')
+      let object = {
+        a: {
+          b: {
+            c: 2
+          }
+        }
+      }
+      console.log("具有深度的对象",object,object.a.b.c)
+    </script>
+</body>
+</html>

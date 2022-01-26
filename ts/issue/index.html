@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="hello.js"></script>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="myBox">当你右键点击我时，会出现自定义事件，当你单击时，自定义取消。</div>
+  <ul class="lists">
+      <li>
+          <a href="www.baidu.com">百度一下，你就知道</a>
+      </li>
+      <li>
+          <a href="www.google.com">Google</a>
+      </li>
+      <li>
+          <a href="cn.bing.com">必应</a>
+      </li>
+      <li>努力学习，好好工作</li>
+      <li>月薪50k</li>
+  </ul>
+  <div id="box">
+    点击
+  </div>
+</body>
+<script>
+  // window.onload = function () {
+  //     let menu = document.querySelector('.lists'),
+  //         myBox = document.getElementById('myBox');
+  //     myBox.addEventListener('contextmenu', function(event){
+  //         // 阻止浏览器鼠标右击事件。
+  //         event.preventDefault();
+  //         menu.style.visibility = 'visible';
+  //         menu.style.left = event.clientX + 'px';
+  //         menu.style.right = event.clientY + 'px';
+  //     }, false);
+  //     document.addEventListener('click', function (event) {
+  //         menu.style.visibility = 'hidden';
+  //     });
+  // }
+  document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
+     var res = document.getElementById('box');      //找到id为box的div
+     document.body.onmouseup = function(e){     //在body里点击触发事件
+        if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
+            alert('点击右键')
+            console.log(e);     //将传进去的参数打印出来
+            console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
+            console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
+            res.style.top = e.offsetY+'px';     //鼠标点击时给div定位Y轴
+            res.style.left = e.offsetX+'px';    //鼠标点击时给div定位X轴
+            res.style.display = 'block';        //显示div盒子
+        }else{
+            res.style.display = 'none';         //否则不显示div盒子
+        }
+        
+     }
+</script>
+</html>

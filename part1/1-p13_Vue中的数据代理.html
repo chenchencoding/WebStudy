@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="Zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id = 'app'>
+        {{name}}
+        {{gender}}
+    </div>
+</body>
+</html>
+<script>
+    /**
+     *  vue 中的数据代理（没懂） 8-23
+     *  1. 当vm中data的数据发生改变，vue会找到页面中使用到该数据的位置，该数据也发生变化（响应式）
+     *  2. vue 会把 data中的数据代理到_data 中， 当页面执行{{name}} 实际上是调用了 _data下的getter,当修改的时候，是执行setter
+     *  3. vm.name  其实是调用了 _data下的getter方法
+    */
+   const vm = new Vue ({
+        el: '#app',
+        data: {
+            name: 'Frank',
+            gender: 'Man',
+        }
+    })
+</script>

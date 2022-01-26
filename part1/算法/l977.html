@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let  nums = [-4,-1,0,3,10]
+    var sortedSquares = function(nums) {
+      let temp = []
+      nums.map(item =>{
+        item = item*item
+        temp.push(item)
+      })
+      temp.sort(function(a,b){
+        return a - b
+      })
+      return temp
+    };
+    sortedSquares(nums)
+
+   
+  </script>
+</body>
+</html>

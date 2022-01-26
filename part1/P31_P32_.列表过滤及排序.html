@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <!-- 分别使用watch 和 computed 实现过滤的监视 -->
+  <div id="app">
+    <input type="text" v-model="keyWord" placeholder="输入姓名字符进行匹配">
+    <button @click="sortType = 2">年纪升序</button>
+    <button @click="sortType = 1">年纪降序</button>
+    <button @click="sortType = 0">原顺序</button>
+    <ul>
+      <li v-for="item  of filterList" :key="item.id">{{item.id}}-{{item.name}}-{{item.age}}</li>
+    </ul>
+    <button @click="windowOpen">测试window.open</button>
+    <button @click="locationHref">测试window.location.href</button>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data(){
+      return {
+        keyWord: '',
+        sortType: 0,
+        infoList: [
+          {id: '001', name: 'Frank', age:'18'},
+          {id: '002', name: 'John', age:'19'},
+          {id: '003', name: 'Tom', age:'17'},
+          {id: '004', name: 'Peter', age:'17'},
+          {id: '005', name: 'Willian', age:'28'}
+        ],
+        // filterList:[]
+      }
+    },
+    // sort 改变原数组
+    // filter 不改变原数组，只会返回一个新的数组
+    computed: {
+      filterList(){
+        // const  这里arr是一个地址，因此后续即使对arr进行了排序，但是只是改变内容，而不改变它的指向。
+        const arr =  this.infoList.filter((item)=>{
+            return item.name.indexOf(this.keyWord) !== -1 
+        })
+        if(this.sortType){
+          arr.sort((a,b)=>{
+            return this.sortType === 1 ? a.age-b.age: b.age-a.age
+          })
+        }
+        return arr
+      }
+    },
+    methods:{
+      windowOpen(){
+        // window.open('https://www.baidu.com','_blank')
+        //window.open('https://www.baidu.com','_self')
+        window.open('https://www.baidu.com','_top')
+      },
+      locationHref(){
+        window.location.href="https://www.baidu.com"
+      }
+    }
+    // watch: {
+    //   keyWord: {
+    //     immediate:true,
+    //     handler(newVal, oldVal){
+    //       // 使用immediate： true 保证刚进入的时候就执行监听，此时keyWord为 空字符串。 filter 对空字符串进行过滤，可以匹配到全部
+    //       console.log(newVal == '')
+    //       this.filterList = this.infoList.filter((item)=>{
+    //         return item.name.indexOf(newVal) !== -1 
+    //       })
+    //     }
+    //   }
+    // }
+  })
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    姓：<input type="text" v-model="firstName"/>
+    名：<input type="text" v-model="lastName"/>
+    姓名：<input type="text" v-model="fullName"/>
+  </div>
+  <script>
+    /* 
+    1. computed有缓存，只有当它依赖的数据发生改变的时候，才会再次执行computed；
+    2. 在异步处理的时候，要先确保能拿到数据，然后进行computed(没想好如何模拟异步)
+    3. 当对computed 依赖的属性进行修改的时候，会调用set
+
+    */
+    new Vue({
+      el:'#app',
+      data(){
+        return {
+          firstName: '张',
+          lastName:'三'
+        }
+      },
+      // computed:{
+      //   fullName:{
+      //     get(){
+      //       return this.firstName + '-' + this.lastName
+      //     },
+      //     set(value){
+      //       const arr = value.split('-')
+      //       // console.log(arr)
+      //       this.firstName = arr[0]
+      //       this.lastName = arr[1]
+      //     }
+      //   }
+      // },
+      // 如果计算属性不涉及修改，可使用下面的简写形式
+      computed: {
+        fullName(){
+          return this.firstName + '-' + this.lastName
+        }
+      }
+    })
+  </script>
+</body>
+</html>
